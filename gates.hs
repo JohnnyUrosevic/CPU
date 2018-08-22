@@ -1,10 +1,12 @@
 type Bits = [Bool]
 
-nor :: (Bits a) => a -> a -> a
-nor [] ys = error "length mismatch"
-nor xs [] = error "length mismatch"
+nor :: Bits -> Bits -> Bits
 nor [] [] = []
-nor x:xs y:ys = (\x y -> if x == True || y == True then False else True):nor xs ys
+nor (x:xs) (y:ys) = (norBit x y):nor xs ys
+    where norBit x y = if x == True || y == True then False else True
 
-not :: (Bits a) => a -> a
+not :: Bits -> Bits
 not x = nor x x
+
+main = do
+    print True
