@@ -10,5 +10,8 @@ nor (x:xs) (y:ys) = (norBit x y):nor xs ys
 not :: Bits -> Bits
 not x = nor x x
 
+or :: Bits -> Bits -> Bits
+or x = Main.not . nor x
+
 main = do
-    print (nor [True] [False, True])
+    print (Main.or [True, False] [False, False])
