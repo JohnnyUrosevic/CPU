@@ -11,7 +11,13 @@ not :: Bits -> Bits
 not x = nor x x
 
 or :: Bits -> Bits -> Bits
-or x = Main.not . nor x
+or x y = Main.not (nor x y)
+
+and :: Bits -> Bits -> Bits
+and x y = nor (Main.not x) (Main.not y)
+
+nand :: Bits -> Bits -> Bits
+nand x y = Main.not (Main.and x y)
 
 main = do
-    print (Main.or [True, False] [False, False])
+    print (Main.and [True, False, True] [False, False, True])
