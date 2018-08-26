@@ -25,5 +25,10 @@ xor x y = Main.and (Main.or x y) (Main.nand x y)
 halfAdd :: Bits -> Bits -> (Bits, Bits)
 halfAdd x y = (Main.and x y, Main.xor x y)
 
+fullAdd :: Bits -> Bits -> Bits -> (Bits, Bits)
+fullAdd x y z = (Main.or (fst sum1) (fst sum2), snd sum2)
+    where sum1 = halfAdd x y
+          sum2 = halfAdd (snd sum1) z 
+
 main = do
-    print (Main.halfAdd [True, False, True] [False, False, True])
+    print (Main.fullAdd [True, False, True] [False, False, True] [True, False, True])
