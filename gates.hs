@@ -22,5 +22,8 @@ nand x y = Main.not $ Main.and x y
 xor :: Bits -> Bits -> Bits
 xor x y = Main.and (Main.or x y) (Main.nand x y)
 
+halfAdd :: Bits -> Bits -> (Bits, Bits)
+halfAdd x y = (Main.and x y, Main.xor x y)
+
 main = do
-    print (Main.xor [True, False, True] [False, False, True])
+    print (Main.halfAdd [True, False, True] [False, False, True])
