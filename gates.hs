@@ -30,5 +30,8 @@ fullAdd x y z = (Main.or (fst sum1) (fst sum2), snd sum2)
     where sum1 = halfAdd x y
           sum2 = halfAdd (snd sum1) z 
 
+add :: Bits -> Bits -> Bool -> Bits
+add [a] [b] carry = fullAdd a b carry
+
 main = do
     print (Main.fullAdd [True, False, True] [False, False, True] [True, False, True])
